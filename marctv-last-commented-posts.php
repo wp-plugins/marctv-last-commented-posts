@@ -3,7 +3,7 @@
   Plugin Name: MarcTV Last Commented Posts
   Plugin URI: http://www.marctv.de/blog/marctv-wordpress-plugins/
   Description: Displays the last commented posts.
-  Version: 0.9
+  Version: 1.1
   Author: MarcDK
   Author URI: http://www.marctv.de
   License: GPL2
