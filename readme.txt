@@ -1,9 +1,9 @@
-=== MarcTV Last Commented Post ===
+=== MarcTV Last Commented Posts ===
 Contributors: MarcDK
 Tags: marctv, comments, recent comments, last commented post
 Requires at least: 3.0
 Tested up to: 3.9.1
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2
 
 == Description ==
