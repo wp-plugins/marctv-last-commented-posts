@@ -1,9 +1,9 @@
 === MarcTV Last Commented Post ===
 Contributors: MarcDK
-Tags: last commented post
+Tags: marctv, comments, recent comments, last commented post
 Requires at least: 3.0
 Tested up to: 3.9.1
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2
 
 == Description ==
@@ -35,7 +35,7 @@ For advanced usage use the first parameter for the number of posts and the secon
 
 == Changelog ==
 
-= 1.1 =
+= 1.2 =
 
 * Added post thumb
 
