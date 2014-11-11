@@ -3,12 +3,12 @@ Contributors: MarcDK
 Tags: marctv, comments, recent comments, last commented post
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2
 
 == Description ==
 
-Displays the last commented posts as a unordered list.
+Provides a new function that returns an unordered list of the last commented articles and their comments.
 
 == Installation ==
 
@@ -34,6 +34,10 @@ For advanced usage use the first parameter for the number of posts and the secon
 
 
 == Changelog ==
+
+= 1.4 =
+
+* Removed unapproved comments from the query.
 
 = 1.2 =
 
