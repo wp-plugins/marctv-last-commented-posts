@@ -1,14 +1,13 @@
 <?php
 /*
-  Plugin Name: MarcTV Last Commented Posts
+  Plugin Name: MarcTV Last Commented Posts or custom post types.
   Plugin URI: http://www.marctv.de/blog/marctv-wordpress-plugins/
-  Description: Displays the last commented posts.
-  Version: 1.4
+  Description: Displays the last commented posts or custom post types
+  Version: 1.5
   Author: MarcDK
   Author URI: http://www.marctv.de
   License: GPL2
  */
-
 
 /**
  *
@@ -16,11 +15,12 @@
  *
  * @param int $limit
  * @param string $ul_classes
- * @return string HTML unorded list
+ * @param string $post_type
+ * @return string HTML unordered list
  */
 
-function get_last_commented_articles($limit = 6, $ul_classes = '') {
-    $results = query_posts_with_recent_comments($limit);
+function get_last_commented_articles($limit = 6, $ul_classes = '', $post_type = 'post') {
+    $results = query_posts_with_recent_comments($limit, $post_type);
     $html = format_last_commented_list($results, $ul_classes);
 
     return $html;
@@ -35,7 +35,11 @@ function get_last_commented_articles($limit = 6, $ul_classes = '') {
  */
 
 function get_first_approved_comment($post_id) {
-    $comments = get_comments(array('status' => 'approve', 'post_id' => $post_id, 'number' => 1));
+    $comments = get_comments(
+        array('status' => 'approve',
+            'post_id' => $post_id,
+            'number' => 1)
+    );
     $comment = $comments[0];
 
     return $comment;
@@ -45,9 +49,17 @@ function get_first_approved_comment($post_id) {
  * Query for posts sorted by the last approved comment without password protected posts and pingbacks.
  *
  * @param $limit
- * @return mixed
+ * @return object|mixed
  */
-function query_posts_with_recent_comments($limit) {
+function query_posts_with_recent_comments($limit,$post_type) {
+
+    if($post_type == ''){
+        $post_type = 'post';
+    }
+
+    if($limit == ''){
+        $limit = 6;
+    }
 
     global $wpdb;
 
@@ -66,7 +78,7 @@ function query_posts_with_recent_comments($limit) {
 from
    $wpdb->posts wp_posts
 where
-   post_type = 'post'
+   post_type = '" . $post_type . "'
    and post_status = 'publish'
    and comment_count > '0'
 order by
@@ -112,7 +124,7 @@ function format_last_commented_list($results, $classes) {
             $authorname = substr($authorname, 0, 9) . '...';
         }
         if (has_post_thumbnail($result->ID)) {
-            $img_html = wp_get_attachment_image(get_post_thumbnail_id($result->ID), 'medium');
+            $img_html = wp_get_attachment_image(get_post_thumbnail_id($result->ID));
             $teaser_img = preg_replace('/(height)=\"\d*\"\s/', "", $img_html);
         }
 
